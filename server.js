@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const routerApi = require('./routes/api-routes')
 
 const app = express();
 
@@ -32,7 +33,7 @@ app.get(
 );
 
 // app.use('/',routerHtml);
-// app.use('/api',routerApi);
+app.use('/api',routerApi);
 
 app.listen(
     PORT,

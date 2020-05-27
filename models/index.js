@@ -23,6 +23,10 @@ const bookSchema = new Schema(
         title: {
             type: String,
             trim: true
+        },
+        isbn13: {
+            type: String,
+            trim: true
         }
     }
 );
