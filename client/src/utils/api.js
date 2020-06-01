@@ -1,6 +1,15 @@
 import axios from 'axios';
 
 export default {
+
+    getAll: function () {
+
+        return axios.get(
+            '/api/test',
+            {}
+        )
+    },
+
     searchTitle: function (title) {
 
         //should only take in name of book and send it to the back end 
@@ -18,7 +27,7 @@ export default {
                 description: description,
                 image: image,
                 link: link,
-                title: title, 
+                title: title,
                 isbn13: isbn,
             }
         )
