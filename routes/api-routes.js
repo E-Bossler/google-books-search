@@ -66,7 +66,7 @@ router.post('/deletebook', (req, res) => {
 
     const isbn13 = req.isbn13
 
-    db.NewSavedBook.deleteOne({
+    db.SavedBook.deleteOne({
         isbn13: isbn13
     }).then(err => {
         if (err) {
@@ -84,8 +84,11 @@ router.post('/deletebook', (req, res) => {
 
 // retriveve saved 
 
-router.post('/getsavedbooks', (req, res) => {
-    db.NewSavedBook.find({})
+router.post('/getallsaved', (req, res) => {
+    
+    console.log('here as well')
+    
+    db.SavedBook.find({})
         .then(
             data => {
                 res.json(data)

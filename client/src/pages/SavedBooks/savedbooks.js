@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import Nav from '../../components/nav/nav';
+// import Nav from '../../components/nav/nav';
 import SavedBooksSection from '../../components/savedbooks/savedbooks';
+import Navigation from '../../components/nav/nav';
 
 
 class SavedBooksPage extends Component {
@@ -20,9 +21,9 @@ class SavedBooksPage extends Component {
     render() {
         return (
             <>
-                <Nav>
+                <Navigation>
 
-                </Nav>
+                </Navigation>
                 
                 <Header>
 

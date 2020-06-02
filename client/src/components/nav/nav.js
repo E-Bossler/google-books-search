@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import Navbar from 'react-bootstrap/Navbar'
-import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
-import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import Nav from 'react-bootstrap/Nav'
 
 
-class Nav extends Component {
+class Navigation extends Component {
     constructor(props) {
         super();
         this.state = {
@@ -24,13 +18,16 @@ class Nav extends Component {
     render() {
 
         return (
-            <Container>
-                <Row>
-                    <Col>1 of 1</Col>
-                </Row>
-            </Container>
+            <Nav>
+                <Nav.Item>
+                    <Nav.Link href="/">Search</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link href="/saved">Saved</Nav.Link>
+                </Nav.Item>
+            </Nav>
         )
     }
 }
 
-export default Nav;
+export default Navigation;

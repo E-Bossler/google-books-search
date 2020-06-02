@@ -42,12 +42,15 @@ export default {
         )
     },
 
-    retrieveSavedBooks: function () {
+    retrieveSavedBooks: function (req) {
+        
+        console.log('here')
+
+        console.log(req)
+        
         return axios.get(
-            '/api/getsavedbooks',
-            {
-                // is this neccessary?
-            }
+            '/api/getallsaved',
+            req
         )
     }
 }
