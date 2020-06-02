@@ -1,7 +1,7 @@
 // const db = require('../models');
 const router = require('express').Router();
 const axios = require('axios');
-const db = require('../models');
+const db = require('../models/index');
 
 
 router.post('/booksearch', (req, res) => {
@@ -37,7 +37,7 @@ router.post('/savebook', (req, res) => {
     const title = req.title
     const isbn13 = req.isbn13
 
-    const newSavedBook = new db.NewSavedBook
+    const newSavedBook = new db.SavedBook();
 
     newSavedBook.authors = authors
     newSavedBook.description = description
