@@ -30,34 +30,58 @@ router.post('/booksearch', (req, res) => {
 // save button 
 
 router.post('/savebook', (req, res) => {
-    const authors = req.authors
-    const description = req.description
-    const image = req.image
-    const link = req.link
-    const title = req.title
-    const isbn13 = req.isbn13
+    
+    // console.log(req.body)
+    
+    const authors = req.body.authors
+    const description = req.body.description
+    const image = req.body.image
+    const link = req.body.link
+    const title = req.body.title
+    const isbn13 = req.body.isbn13
 
-    const newSavedBook = new db.SavedBook();
+    
+    db.SavedBook.find(
+        {
+            isbn13: isbn13
+        },
+        (err,bookExists) => {
+            if (err) {
+                return res.send({
+                    success: false,
+                    message: `ERROR: ${err}`
+                })
+            } else if (bookExists.length > 0) {
+                return res.send({
+                    success: false,
+                    message: 'This book has already been added!'
+                })
+            } else {
+                
+                const newSavedBook = new db.SavedBook();
 
-    newSavedBook.authors = authors
-    newSavedBook.description = description
-    newSavedBook.image = image
-    newSavedBook.link = link
-    newSavedBook.title = title
-    newSavedBook.isbn13 = isbn13
-
-    newSavedBook.save(err => {
-        if (err) {
-            return res.send({
-                success: false,
-                message: `Please see error message: ${err}`,
-            });
+                newSavedBook.authors = authors
+                newSavedBook.description = description
+                newSavedBook.image = image
+                newSavedBook.link = link
+                newSavedBook.title = title
+                newSavedBook.isbn13 = isbn13
+            
+                newSavedBook.save(err => {
+                    if (err) {
+                        return res.send({
+                            success: false,
+                            message: `ERROR: ${err}`,
+                        });
+                    }
+                    return res.send({
+                        success: true,
+                        message: 'You have saved a book.',
+                    });
+                })
+            }
         }
-        return res.send({
-            success: true,
-            message: 'You have saved a book.',
-        });
-    })
+    )
 })
 
 // delete button 
@@ -84,7 +108,7 @@ router.post('/deletebook', (req, res) => {
 
 // retriveve saved 
 
-router.post('/getallsaved', (req, res) => {
+router.get('/getallsaved', (req, res) => {
     
     console.log('here as well')
     
@@ -98,4 +122,4 @@ router.post('/getallsaved', (req, res) => {
         })
 })
 
-module.exports = router;
+module.exports = router

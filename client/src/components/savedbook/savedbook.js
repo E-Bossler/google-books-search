@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import api from '../../utils/api.js';
+import api from '../../utils/api';
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Button from 'react-bootstrap/Button';
 
@@ -12,27 +12,27 @@ class SavedBook extends Component {
         }
     }
 
+    renderBooks(data) {
+        
+    }
+
     getSavedBooks() {
         api.retrieveSavedBooks({}).then(
             result => {
-                console.log(result)
+                console.log(result.data)
+                this.renderBooks(result.data)
             }
         )
     }
 
     componentDidMount () {
-        // this.getSavedBooks();
+        this.getSavedBooks();
     }
 
     render() {
 
         return (
             <Jumbotron>
-                <Button
-                    onClick={this.getSavedBooks}
-                >
-                    Test the API
-                </Button>
                 <hr></hr>
                 <Button>
                     Delete Book

@@ -12,24 +12,25 @@ app.use(express.json({ type: ['application/json'] }));
 app.use(express.static("public"));
 
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/_______",
+    process.env.MONGODB_URI || "mongodb://localhost/books",
     {
         useNewUrlParser: true,
-        useFindAndModify: false
+        useFindAndModify: false,
+        useUnifiedTopology: true
     }
 );
 
 // https://www.googleapis.com/books/v1/volumes?q=search+terms
 // AIzaSyCwFmrxLpgYHkrr5WXgfpbW08db9E719c8
 
-app.get(
-    '/api/test',
-    (req, res) => {
-        res.json(
-            [{"hi":"Hello World! We have front-end and back-end communication!"}]
-        )
-        }
-);
+// app.get(
+//     '/api/test',
+//     (req, res) => {
+//         res.json(
+//             [{"hi":"Hello World! We have front-end and back-end communication!"}]
+//         )
+//         }
+// );
 
 // app.use('/',routerHtml);
 app.use('/api',routerApi);

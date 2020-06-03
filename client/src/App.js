@@ -6,16 +6,16 @@ import SavedBooksPage from './pages/SavedBooks/savedbooks'
 import SearchBooksPage from './pages/SearchBooks/searchbooks'
 
 
-function testFun() { 
-  api.getAll().then(
-    result => {
-      console.log(result.data[0].hi)
-    }
-  )
-}
+// function testFun() { 
+//   api.getAll().then(
+//     result => {
+//       console.log(result.data[0].hi)
+//     }
+//   )
+// }
 
 function App() {
-  testFun();
+  // testFun();
   return (
     <Router>
       <Switch>

@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
+import swal from 'sweetalert'
 
 class SearchedBook extends Component {
     constructor(props) {
@@ -17,7 +18,9 @@ class SearchedBook extends Component {
             image: this.props.image,
             link: this.props.link,
             title: this.props.title,
-            isbn: this.props.isbn
+            isbn: this.props.isbn,
+            pubDate: this.props.pubDate,
+            category: this.props.category
         }
     }
 
@@ -25,12 +28,16 @@ class SearchedBook extends Component {
 
         e.preventDefault();
 
-        const authors = this.state.authors
-        const description = this.state.synopsis 
-        const image = this.state.image
-        const link = this.state.link
-        const title = this.state.title
-        const isbn = this.state.isbn
+        const authors = this.props.authors
+        const description = this.props.synopsis 
+        const image = this.props.image
+        const link = this.props.link
+        const title = this.props.title
+        const isbn = this.props.isbn
+
+        // console.log(this.props)
+
+        // console.log(`We are saving ${title}`)
 
         api.saveBook(
             authors, 
@@ -42,7 +49,15 @@ class SearchedBook extends Component {
         ).then(
             result => {
                 const success = result.data.success
-                console.log(result.data.message)
+
+                const message = result.data.message
+
+                if(success) {
+                    swal('Success', message,'success')
+                } else {
+                    swal('I am sorry...', message,'warning')
+                }
+                
             }
         )
     }

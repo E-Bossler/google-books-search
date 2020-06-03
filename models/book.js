@@ -23,6 +23,15 @@ const BookSchema = new Schema(
         category: {
             type: String,
             trim: true
+        }, 
+        image: {
+            type: String
+        },
+        link: {
+            type: String
+        },
+        isbn13: {
+            type: String
         }
     }
 );

@@ -2,13 +2,13 @@ import axios from 'axios';
 
 export default {
 
-    getAll: function () {
+    // getAll: function () {
 
-        return axios.get(
-            '/api/test',
-            {}
-        )
-    },
+    //     return axios.get(
+    //         '/api/test',
+    //         {}
+    //     )
+    // },
 
     searchTitle: function (title) {
 
@@ -43,11 +43,6 @@ export default {
     },
 
     retrieveSavedBooks: function (req) {
-        
-        console.log('here')
-
-        console.log(req)
-        
         return axios.get(
             '/api/getallsaved',
             req
