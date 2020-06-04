@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import api from '../../utils/api';
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Button from 'react-bootstrap/Button';
+import swal from 'sweetalert'
 
 
 class SavedBook extends Component {
-    constructor (props) {
+    constructor(props) {
         super();
         this.state = {
-
+            books: []
         }
     }
 
@@ -28,20 +29,50 @@ class SavedBook extends Component {
         )
     }
 
-    componentDidMount () {
+    deleteBook(isbn) {
+        api.deleteBook(
+            isbn
+        ).then(
+            result => {
+                const success = result.data.success
+                const message = result.data.message
+                if(success) {
+                    swal('Success', message,'success')
+                } else {
+                    swal('Oh no...', message,'warning')
+                }
+            }
+        )
+    }
+
+    componentDidMount() {
         this.getSavedBooks();
     }
 
+
     render() {
-        this.getSavedBooks()
         return (
-            <Jumbotron>
-                {this.state.books.map()}
-                <hr></hr>
-                <Button>
-                    Delete Book
-                </Button>
-            </Jumbotron>
+            <div>
+                {this.state.books.map(book => (
+                    <Jumbotron key={book._id}>
+                        Title: {book.title}
+                        <br></br>
+                        By:  {book.authors}
+                        <br></br>
+                        Link: {book.link}
+                        <hr></hr>
+                        <Button
+                            onClick={
+                                e => {
+                                    this.deleteBook(book.isbn)
+                                }
+                            }
+                        >
+                            Delete Book
+                        </Button>
+                    </Jumbotron>
+                ))}
+            </div>
         )
     }
 }
