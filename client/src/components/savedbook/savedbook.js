@@ -12,15 +12,18 @@ class SavedBook extends Component {
         }
     }
 
-    renderBooks(data) {
-        
-    }
-
     getSavedBooks() {
         api.retrieveSavedBooks({}).then(
             result => {
                 console.log(result.data)
-                this.renderBooks(result.data)
+                // this.renderBooks(result.data)
+                this.setState(
+                    {
+                        books: result.data
+                    }
+                )
+
+                console.log(this.state)
             }
         )
     }
@@ -30,9 +33,10 @@ class SavedBook extends Component {
     }
 
     render() {
-
+        this.getSavedBooks()
         return (
             <Jumbotron>
+                {this.state.books.map()}
                 <hr></hr>
                 <Button>
                     Delete Book

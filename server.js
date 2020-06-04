@@ -32,6 +32,21 @@ mongoose.connect(
 //         }
 // );
 
+// FOR PRODUCTION WE NEED THE FOLLOWING UNCOMMENTED
+
+// ********************************************************************************
+
+const path = require("path");
+
+app.use(express.static(path.join(__dirname, "client/build")));
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+});
+
+// ********************************************************************************
+
+
 // app.use('/',routerHtml);
 app.use('/api',routerApi);
 
