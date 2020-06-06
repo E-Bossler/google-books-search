@@ -64,7 +64,10 @@ class SavedBook extends Component {
                         <Button
                             onClick={
                                 e => {
-                                    this.deleteBook(book.isbn)
+                                    console.log(book.isbn13)
+                                    const isbn = book.isbn13
+                                    this.deleteBook(isbn)
+                                    this.getSavedBooks()
                                 }
                             }
                         >

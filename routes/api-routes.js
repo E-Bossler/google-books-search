@@ -88,17 +88,19 @@ router.post('/savebook', (req, res) => {
 
 router.post('/deletebook', (req, res) => {
 
-    const isbn13 = req.isbn13
+    const isbn13 = req.body.isbn13
+
+    console.log('this should be the isbn', isbn13)
 
     db.SavedBook.deleteOne({
         isbn13: isbn13
-    }).then(err => {
-        if (err) {
-            return res.send({
-                success: false,
-                message: `Something went wrong...`,
-            });
-        }
+    }).then((err,results)=> {
+        // if (err) {
+        //     return res.send({
+        //         success: false,
+        //         message: `Something went wrong...`,
+        //     });
+        // }
         return res.send({
             success: true,
             message: 'You have deleted a book.',
