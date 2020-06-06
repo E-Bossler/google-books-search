@@ -55,11 +55,11 @@ class SavedBook extends Component {
             <div>
                 {this.state.books.map(book => (
                     <Jumbotron key={book._id}>
-                        Title: {book.title}
+                        <h4>{book.title}</h4>
                         <br></br>
                         By:  {book.authors}
                         <br></br>
-                        Link: {book.link}
+                        Description: {book.description}
                         <hr></hr>
                         <Button
                             onClick={

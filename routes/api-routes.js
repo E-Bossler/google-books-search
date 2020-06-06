@@ -96,7 +96,7 @@ router.post('/deletebook', (req, res) => {
         if (err) {
             return res.send({
                 success: false,
-                message: `Please see error message: ${err}`,
+                message: `Something went wrong...`,
             });
         }
         return res.send({
